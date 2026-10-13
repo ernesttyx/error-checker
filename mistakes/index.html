@@ -7,7 +7,7 @@
 :root{
   --paper:#f7f8fa; --sheet:#ffffff; --ink:#1b2130; --muted:#5d6475; --rule:#dfe3ea;
   --blue:#2346b8; --blue-soft:#e9eefc; --red:#c8252c; --red-soft:#fcecec; --amber:#8a5a00; --amber-soft:#fbf1dc;
-  --green:#2f6b3f; --green-soft:#e7f2ea; --violet:#6a3fb5; --violet-soft:#f0eafb;
+  --green:#2f6b3f; --green-soft:#e7f2ea; --violet:#6a3fb5; --violet-soft:#f0eafb; --teal:#0b6b74; --teal-soft:#e2f2f3;
   --f-display:"Fraunces", Georgia, "Times New Roman", serif;
   --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-hand:"Kalam", "Comic Sans MS", cursive;
@@ -16,12 +16,12 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#12151c; --sheet:#1a1e27; --ink:#e7e9ee; --muted:#9aa1b2; --rule:#2c3240;
   --blue:#8fa8ff; --blue-soft:#1d2540; --red:#ff7b7b; --red-soft:#3a1d20; --amber:#f0c060; --amber-soft:#3a2f17;
-  --green:#86cf98; --green-soft:#1b3022; --violet:#c3a6ff; --violet-soft:#2a2140; color-scheme:dark }}
+  --green:#86cf98; --green-soft:#1b3022; --violet:#c3a6ff; --violet-soft:#2a2140; --teal:#6fd3dc; --teal-soft:#16302f; color-scheme:dark }}
 :root[data-theme="dark"]{
   --paper:#12151c; --sheet:#1a1e27; --ink:#e7e9ee; --muted:#9aa1b2; --rule:#2c3240;
   --blue:#8fa8ff; --blue-soft:#1d2540; --red:#ff7b7b; --red-soft:#3a1d20; --amber:#f0c060; --amber-soft:#3a2f17;
-  --green:#86cf98; --green-soft:#1b3022; --violet:#c3a6ff; --violet-soft:#2a2140; color-scheme:dark }
-*{box-sizing:border-box}
+  --green:#86cf98; --green-soft:#1b3022; --violet:#c3a6ff; --violet-soft:#2a2140; --teal:#6fd3dc; --teal-soft:#16302f; color-scheme:dark }
+*{box-sizing:border-box} [hidden]{display:none!important}
 body{background:var(--paper);color:var(--ink);font:15px/1.6 var(--f-body);padding-inline:16px;padding-block:0 64px}
 .wrap{max-width:920px;margin:0 auto}
 header.top{padding-block:40px 18px}
@@ -70,6 +70,8 @@ article.item{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 18px
 .k-red .marks{background:var(--red-soft);color:var(--red)} .k-red .kind{color:var(--red)}
 .k-worked .marks{background:var(--amber-soft);color:var(--amber)} .k-worked .kind{color:var(--amber)}
 .k-unmarked .marks{background:var(--violet-soft);color:var(--violet)} .k-unmarked .kind{color:var(--violet)}
+.k-ms .marks{background:var(--teal-soft);color:var(--teal)} .k-ms .kind{color:var(--teal)}
+.stat.teal b{color:var(--teal)}
 .k-note .marks{background:var(--green-soft);color:var(--green)} .k-note .kind{color:var(--green)}
 .body{min-width:0;display:flex;flex-direction:column;gap:12px}
 .question{margin:0;max-width:72ch}
@@ -81,6 +83,22 @@ article.item{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 18px
 .fix{background:var(--red-soft)} .fix h3{color:var(--red)} .fix p{font-weight:600}
 .k-worked .fix{background:var(--amber-soft)} .k-worked .fix h3{color:var(--amber)}
 .k-unmarked .fix{background:var(--violet-soft)} .k-unmarked .fix h3{color:var(--violet)}
+.k-ms .fix{background:var(--teal-soft)} .k-ms .fix h3{color:var(--teal)}
+.msline{border:1px dashed var(--rule);border-radius:8px;padding:8px 12px;font-size:13.5px;max-width:72ch}
+.msline b{font:500 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin-right:6px}
+.msline.none b{color:var(--muted)}
+.quick .msq{display:block;font-weight:400;font-size:12.5px;color:var(--teal);margin-top:4px}
+.quick .msq::before{content:"Mark scheme: ";font:500 11px var(--f-mono);text-transform:uppercase;letter-spacing:.05em}
+.theme{padding-block:22px;border-bottom:1px solid var(--rule)}
+.theme h2{font:650 21px/1.25 var(--f-display);margin:0 0 6px;text-wrap:balance}
+.theme .tcount{font:500 12px/1 var(--f-mono);color:var(--red);margin-bottom:8px;display:block}
+.theme p{margin:0 0 12px;max-width:70ch}
+.refs{display:flex;flex-direction:column;gap:6px}
+.ref{display:grid;grid-template-columns:200px minmax(0,1fr);gap:4px 12px;font-size:13.5px;text-align:left;background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;color:var(--ink);cursor:pointer;font-family:var(--f-body)}
+.ref:hover{border-color:var(--muted)}
+.ref b{font:500 12px/1.4 var(--f-mono)}
+.ref span{min-width:0}
+@media (max-width:640px){.ref{grid-template-columns:minmax(0,1fr)}}
 .k-note .fix{background:var(--green-soft)} .k-note .fix h3{color:var(--green)} .k-note .fix p{font-weight:400}
 .why{border-left:2px solid var(--rule);padding:2px 0 2px 14px;max-width:72ch}
 .why h3{margin:0 0 4px;font:500 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -112,22 +130,24 @@ footer{margin-top:40px;font-size:13px;color:var(--muted)}
   <header class="top">
     <div class="eyebrow">Cambridge AS Physics 9702 · Paper 2</div>
     <h1>Mistakes the <span class="pen">red pen</span> caught</h1>
-    <p class="lede">Every question marked down across 16 marked Paper 2 scripts, plus the questions the marker skipped that turned out wrong. Read them as a quick answer list or with full explanations, by paper or by syllabus chapter.</p>
+    <p class="lede">Every question marked down across 16 marked Paper 2 scripts, checked against the official mark schemes, plus the questions the marker skipped that turned out wrong. Read them as a quick answer list, with full explanations, or as the topics to revise.</p>
     <div class="stats" id="stats"></div>
     <div class="legend">
       <span><i style="background:var(--red)"></i>Corrected in red by the marker</span>
       <span><i style="background:var(--amber)"></i>Marks lost, no red correction</span>
       <span><i style="background:var(--violet)"></i>Not marked, found wrong on checking</span>
-      <span><i style="background:var(--green)"></i>Full marks, marker added a note</span>
+      <span><i style="background:var(--teal)"></i>Marker gave credit, mark scheme does not</span>
+      <span><i style="background:var(--green)"></i>No mistake: marker note, or the mark scheme accepts your answer</span>
     </div>
-    <p class="notice"><b>How the answers were checked.</b> Every correct answer here was rechecked by working the physics through from the question data and graphs. The official Cambridge mark schemes could not be downloaded from this workspace, so none of them has been compared with the mark scheme yet; treat amber and violet entries as checked solutions, not official ones.</p>
+    <p class="notice"><b>Checked against the official mark schemes.</b> Every entry was compared with the published Cambridge mark scheme for its paper (15 of 16). The May/June 2026 Paper 21 mark scheme could not be downloaded from this workspace, so those entries are checked by working only. Checking also found 5 answers the marker accepted that the mark scheme would not, and 2 marks the marker took off that the mark scheme would give.</p>
     <div class="tabs" role="tablist" aria-label="View">
       <button class="tab" role="tab" id="t-quick" data-mode="quick" aria-selected="true">Mistakes &amp; answers<small>Question and correct answer only</small></button>
-      <button class="tab" role="tab" id="t-explained" data-mode="explained" aria-selected="false">Explanations<small>Why it was wrong, with the marked page</small></button>
+      <button class="tab" role="tab" id="t-explained" data-mode="explained" aria-selected="false">Explanations<small>Why it was wrong, mark scheme and page</small></button>
+      <button class="tab" role="tab" id="t-topics" data-mode="topics" aria-selected="false">Weak topics<small>What to revise, based on your answers</small></button>
     </div>
   </header>
 
-  <div class="bar">
+  <div class="bar" id="bar">
     <div class="row" role="group" aria-label="Group by">
       <span class="lbl">Group</span>
       <button class="chip" id="g-paper" data-g="paper" aria-pressed="true">By paper</button>
@@ -139,7 +159,8 @@ footer{margin-top:40px;font-size:13px;color:var(--muted)}
       <button class="chip" id="f-red" data-f="red" aria-pressed="false">Red-pen</button>
       <button class="chip" id="f-worked" data-f="worked" aria-pressed="false">Marks lost</button>
       <button class="chip" id="f-unmarked" data-f="unmarked" aria-pressed="false">Not marked</button>
-      <button class="chip" id="f-note" data-f="note" aria-pressed="false">Marker notes</button>
+      <button class="chip" id="f-ms" data-f="ms" aria-pressed="false">Mark scheme differs</button>
+      <button class="chip" id="f-note" data-f="note" aria-pressed="false">No mistake</button>
     </div>
     <nav class="row jumps" id="jumps" aria-label="Jump to section"></nav>
   </div>
@@ -149,384 +170,507 @@ footer{margin-top:40px;font-size:13px;color:var(--muted)}
 </div>
 
 <script>
-// kind: "red" = corrected in red by the marker; "worked" = marks lost, no red correction (answer worked out);
-// "unmarked" = question the marker skipped, found wrong on checking; "note" = full marks, marker added a red note
-// ch: AS syllabus topic number (see CHAPTERS)
+// kind: "red" = corrected in red by the marker; "worked" = marks lost, no red correction;
+// "unmarked" = question the marker skipped, found wrong; "ms" = the marker gave credit but the official mark scheme does not;
+// "note" = no mistake (full marks, or marked wrong but the mark scheme accepts it)
+// ms: what the official Cambridge mark scheme requires (paraphrased from the published MS)
 window.CHAPTERS = {
  1:"Physical quantities and units", 2:"Kinematics", 3:"Dynamics", 4:"Forces, density and pressure",
  5:"Work, energy and power", 6:"Deformation of solids", 7:"Waves", 8:"Superposition",
  9:"Electricity", 10:"D.C. circuits", 11:"Particle physics"
 };
 window.PAPERS = [
-{ id:"mj22-21", code:"9702/21", session:"May/June 2022", file:"June 2022 (v1)", items:[
+{ id:"mj22-21", code:"9702/21", session:"May/June 2022", file:"June 2022 (v1)", msfile:"9702_s22_ms_21", items:[
  { q:"1(c)", ch:3, page:"p02-05", marks:"0/2", kind:"red",
    question:"The planet has an atmosphere that causes a viscous force on the rock. State and explain the variation, if any, in the resultant force acting on the rock as it moves vertically upwards.",
    student:"Resultant force increases. Viscous force acts as a resistive force opposing motion, in the same direction as weight, so the downward resultant force increases.",
    answer:"Resultant force decreases.",
-   why:"On the way up, weight and drag both act downwards, so resultant = W + drag. Drag depends on speed. As the rock rises it slows down, so drag gets smaller and the resultant force decreases. Drag is in the same direction as weight, as you said, but its size changes with speed." },
+   ms:"Speed decreases so viscous force decreases (B1); viscous force decreases and weight is constant, so resultant force decreases (B1).",
+   why:"On the way up, weight and drag both act downwards, so resultant = W + drag. Drag depends on speed. As the rock rises it slows down, so drag gets smaller and the resultant decreases. You had the direction of drag right but missed that its size changes." },
  { q:"3(b)(iii)", ch:5, page:"p02-09", marks:"0/1", kind:"red",
    question:"The rate of increase of GPE of the block equals the useful power output of the motor. One reason is that no work is done against resistive forces. By considering the motion of the block, state another reason.",
    student:"Resultant force acting on the block is zero.",
-   answer:"The block's kinetic energy does not change (constant velocity).",
-   why:"The question asks about energy. Motor output = gain in GPE + gain in KE + work against friction. With no friction and constant speed (no KE gain), all the output goes into GPE. “Resultant force is zero” is true, but it doesn't say where the energy goes." },
+   answer:"The block's kinetic energy does not change.",
+   ms:"No change in kinetic energy (of block) (B1).",
+   why:"The question is about where the energy goes. Motor output = GPE gain + KE gain + work against friction. With no friction and constant speed, all of it goes into GPE. “Resultant force is zero” is true but doesn't talk about energy." },
  { q:"5(d)", ch:8, page:"p02-13", marks:"1/2", kind:"red",
    question:"A particle on the string has zero displacement at t = 0. From t = 0 to t = 0.060 s it moves through a total distance of 72 mm. Period = 0.040 s. Calculate the amplitude of oscillation of the particle.",
    student:"0.060 / 0.040 = 1.5;  A × 1.5 = 72 mm  →  A = 48 mm",
    answer:"A = 12 mm",
-   why:"In one complete oscillation a particle travels 4A (out, back, out the other way, back). 0.060 s is 1.5 periods, so the distance is 1.5 × 4A = 6A. 6A = 72 mm, so A = 12 mm. Your 1.5 was right, but you multiplied it by A instead of by 4A." },
+   ms:"Number of periods = 0.060/0.040 = 1.5 (C1); amplitude = 72/6 = 12 mm (A1).",
+   why:"In one complete oscillation a particle travels 4A. 1.5 periods is 6A, so 6A = 72 mm and A = 12 mm. You found the 1.5 correctly but multiplied it by A instead of 4A." },
  { q:"7(b)(ii)", ch:11, page:"p02-16", marks:"1/2", kind:"red",
    question:"Particle P is composed of an up quark (u) and a down antiquark (d̄). P belongs to two classes (groups) of particles. State the names of these two classes.",
    student:"1. Mesons   2. Baryons",
    answer:"Mesons and hadrons.",
-   why:"Hadrons are particles made of quarks, and there are two types: mesons (quark + antiquark) and baryons (three quarks, e.g. proton, neutron). A quark–antiquark pair is a meson, so it is a hadron. It can't also be a baryon." }
+   ms:"Hadron(s) (B1); meson(s) (B1).",
+   why:"Hadrons are all particles made of quarks. They split into mesons (quark + antiquark) and baryons (three quarks). A quark–antiquark pair is a meson, and every meson is a hadron. It can't also be a baryon." }
 ]},
-{ id:"mj22-22", code:"9702/22", session:"May/June 2022", file:"June 2022 (v2)", score:"56/60", items:[
+{ id:"mj22-22", code:"9702/22", session:"May/June 2022", file:"June 2022 (v2)", msfile:"9702_s22_ms_22", score:"56/60", items:[
  { q:"1(b)(ii)", ch:1, page:"p03-05", marks:"1/2", kind:"red",
    question:"E = kM/T² was calculated as 8.245 × 10⁹ Pa with a percentage uncertainty of 5.7%. Determine the value of E, with its absolute uncertainty, to an appropriate number of significant figures.",
    student:"E = (8.245 ± 0.470) × 10⁹ Pa",
-   answer:"E = (8.2 ± 0.5) × 10⁹ Pa  (marker wrote 8.2 ± 0.47)",
-   why:"Absolute uncertainty = 5.7% × 8.245 = 0.47. Give the uncertainty to 1 s.f. (0.5), then round the value to the same decimal place (8.2). Writing 8.245 claims precision the measurement does not have." },
+   answer:"E = (8.2 ± 0.5) × 10⁹ Pa",
+   ms:"Absolute uncertainty = 5.7/100 × 8.245 × 10⁹ (C1); E = (8.2 ± 0.5) × 10⁹ Pa (A1).",
+   why:"The uncertainty 0.47 is given to 1 s.f., so 0.5. Then round the value to the same decimal place: 8.2. The marker's note “8.2 ± 0.47” shows the rounding; the mark scheme's final form is 8.2 ± 0.5." },
  { q:"2(c)", ch:5, page:"p03-07", marks:"2/3", kind:"red",
    question:"The centre of the sphere is initially 6.2 m above the horizontal surface. The water speed increases and the sphere moves so that its GPE decreases by 77 J (weight 32 N). Calculate the final height of the centre of the sphere.",
    student:"32h = 77 → h = 2.4 m;  6.2 + 2.4 = 8.6 m",
    answer:"3.8 m",
-   why:"A decrease in GPE means the sphere moves down. Δh = 77/32 = 2.4 m, so the final height is 6.2 − 2.4 = 3.8 m. Check the sign: a GPE loss always means a lower height." },
+   ms:"ΔE = WΔh (C1); Δh = 77/32 = 2.4 (C1, A1); final height = 6.2 − 2.4 = 3.8 m.",
+   why:"A decrease in GPE means the sphere moves down. Δh = 2.4 m, so the final height is 6.2 − 2.4 = 3.8 m." },
  { q:"2(d)(ii)", ch:6, page:"p03-07", marks:"1/2", kind:"red",
    question:"The initial elastic potential energy of the wire was 0.65 J. The change in position of the sphere causes the extension of the wire to double. Calculate the final elastic potential energy.",
    student:"Used ½Fx with the original force and doubled extension → 1.3 J",
    answer:"2.6 J",
-   why:"For a Hooke's-law wire, F = kx, so doubling x also doubles F. E = ½Fx = ½kx², so E ∝ x² and doubling x multiplies E by 4: 4 × 0.65 = 2.6 J. Keeping F fixed while doubling x only doubles E." },
+   ms:"E = ½kx² (C1); E = 0.65 × 2² = 2.6 J (A1).",
+   why:"For a Hooke's-law wire F = kx, so doubling x also doubles F. E = ½kx² ∝ x², so doubling x multiplies E by 4." },
  { q:"5(d)", ch:8, page:"p03-13", marks:"2/3", kind:"red",
    question:"The intensity of the light incident on the double slit is increased without changing the frequency. Describe how the appearance of the fringes is different from, and similar to, before.",
    student:"Brightness of bright fringes increases; amplitude increases; dark fringes do not change; destructive interference occurs before and after.",
-   answer:"Different: bright fringes are brighter. Same: the fringe separation (spacing) does not change.",
-   why:"Fringe spacing x = λD/a. Intensity doesn't appear in it, and λ is unchanged because the frequency is unchanged. A “similar” point needs a physical feature you can see, and spacing is the one examiners look for." }
+   answer:"Bright fringes brighter; dark fringes unchanged; fringe separation unchanged.",
+   ms:"Bright fringes are brighter (B1); no change to dark fringes (B1); no change to fringe separation/spacing (B1).",
+   why:"Spacing x = λD/a. Intensity isn't in it and λ is unchanged, so spacing stays the same. That third point is what you were missing." }
 ]},
-{ id:"mj22-23", code:"9702/23", session:"May/June 2022", file:"June 2022 (v3)", items:[
- { q:"4(b)", ch:5, page:"p04-08", marks:"1/1", kind:"note",
+{ id:"mj22-23", code:"9702/23", session:"May/June 2022", file:"June 2022 (v3)", msfile:"9702_s22_ms_23", items:[
+ { q:"4(b)", ch:5, page:"p04-08", marks:"marker 1/1 · MS 0/1", kind:"ms",
    question:"A 0.60 kg mass falls at a steady speed and spins the wheel of a generator, causing a current in a resistor. State the main energy change when the mass is falling at a steady speed.",
    student:"Gravitational potential energy to electrical energy.",
-   answer:"Marked correct. The marker added “heat” as the final form.",
-   why:"At steady speed there is no KE change, so GPE → electrical energy in the generator, which then becomes thermal energy in the resistor." },
+   answer:"Gravitational potential energy to thermal (heat) energy.",
+   ms:"Gravitational potential (energy) to heat/thermal (energy) (B1).",
+   why:"The marker ticked “electrical” and wrote “heat”. The mark scheme only accepts heat/thermal: the electrical energy is only an intermediate step, and it ends up as thermal energy in the resistor. Always follow the energy to its final form." },
  { q:"4(c)(iii)", ch:5, page:"p04-09", marks:"0/2", kind:"red",
    question:"Rate of work done by the falling mass = 2.1 W; power dissipated in the resistor = 0.38 W. Calculate the efficiency of the generator.",
    student:"(2.1 − 0.38) / 2.1 × 100% = 82%",
    answer:"18%",
-   why:"Efficiency = useful output ÷ total input. The useful output is the electrical power delivered to the resistor (0.38 W); the input is the 2.1 W from the falling mass. 0.38/2.1 = 18%. You calculated the fraction wasted." },
+   ms:"Efficiency = Pout/Pin (C1) = 0.38/2.1 = 0.18 or 18% (A1).",
+   why:"Efficiency = useful output ÷ input. Useful output is the 0.38 W in the resistor; input is the 2.1 W from the falling mass. You calculated the fraction wasted." },
  { q:"5(b)(iv)", ch:8, page:"p04-13", marks:"1/2", kind:"red",
    question:"The laser (λ = 8.1 × 10⁻⁸ m) is replaced with one emitting 300 nm waves. Explain, without calculation, what happens to the number of maxima detected.",
    student:"Number of maxima detected decreases; n ∝ 1/λ with d and θ constant.",
-   answer:"Wavelength is longer, so fewer maxima are detected.",
-   why:"The explanation needs the change in λ stated: 300 nm is longer than 81 nm. With d sin θ = nλ and sin θ ≤ 1, the highest order n_max = d/λ gets smaller as λ increases, so fewer maxima." },
+   answer:"The wavelength has increased, so the number of maxima decreases.",
+   ms:"The wavelength has increased (M1); so number of maxima decreases (A1).",
+   why:"The M1 mark needs the change stated: 300 nm is longer than 81 nm. Since d sin θ = nλ and sin θ ≤ 1, the highest order d/λ falls as λ rises." },
  { q:"6(c)", ch:10, page:"p04-15", marks:"1/4", kind:"red",
    question:"Circuit with cell, switches S₁ (to R) and S₂ (to 2R) in parallel branches, ammeters X (supply), Y (R branch) and Z (2R branch). X reads 1.0 A when S₁ is open and S₂ closed. Complete Table 6.1.",
    student:"open/closed: Y = 0, Z = 1.0 ✓\nclosed/open: X = 1.0, Y = 1.0, Z = 0\nclosed/closed: X = 1.0, Y = 0.7, Z = 0.3",
    answer:"closed/open: X = 2.0, Y = 2.0, Z = 0\nclosed/closed: X = 3.0, Y = 2.0, Z = 1.0",
-   why:"The cell's p.d. is the same across each branch, so each branch current is independent. 2R carries 1.0 A, so R (half the resistance) carries 2.0 A. With both closed, the branches simply add: 2.0 + 1.0 = 3.0 A. The supply current is not fixed at 1.0 A." }
+   ms:"Row 2: 1.0, 0, 1.0; row 3: 2.0, 2.0, 0; row 4: 3.0, 2.0, 1.0 (X = Y + Z).",
+   why:"Each branch has the full cell p.d. across it, so branch currents don't affect each other. R is half of 2R, so it carries 2.0 A. With both closed the supply current is the sum, 3.0 A. The supply current is not fixed." }
 ]},
-{ id:"on22-21", code:"9702/21", session:"Oct/Nov 2022", file:"November 2022 (v1)", items:[
+{ id:"on22-21", code:"9702/21", session:"Oct/Nov 2022", file:"November 2022 (v1)", msfile:"9702_w22_ms_21", items:[
  { q:"2(c)(ii)", ch:3, page:"p07-09", marks:"0/1", kind:"red",
    question:"The steel ball is replaced by a polystyrene ball of much lower mass. Air resistance is not negligible after it leaves the spring. Explain why this ball takes a longer time to reach the ground than the steel ball.",
    student:"Horizontal velocity greater, horizontal distance travelled is greater.",
-   answer:"Air resistance has an upward component, so the downward acceleration is less than g.",
-   why:"Time to fall depends only on the vertical motion. Horizontal speed doesn't affect it. Air resistance opposes the velocity, so once the ball moves downwards it has an upward component. The resultant downward force is less than the weight, a < g, so the fall takes longer." },
+   answer:"Its downward acceleration (vertical resultant force) is smaller.",
+   ms:"Less (average vertical) acceleration / smaller vertical component of resultant force (B1).",
+   why:"Fall time depends only on vertical motion. Air resistance has an upward component, so the resultant downward force is less than the weight and a < g." },
  { q:"3(c)(ii)", ch:5, page:"p07-11", marks:"2/3", kind:"red",
    question:"Resistive force stays 5200 N. The lorry (m = 36 000 kg) travels up a slope at θ = 1.4° at 25 m s⁻¹. Determine the power, in kW, now provided by the engine.",
    student:"P = (36000 sin 1.4° + 5200)(25) = 150 kW",
-   answer:"≈ 350 kW",
-   why:"The component of weight along the slope is mg sin θ, and you used m instead of mg. 36000 × 9.81 × sin 1.4° = 8630 N. Driving force = 8630 + 5200 = 13 830 N; P = Fv = 13 830 × 25 = 3.5 × 10⁵ W." },
+   answer:"350 kW",
+   ms:"Weight component = 36 000 × 9.81 × sin 1.4° (≈ 8600 N) (C1); total F = 13 800 N (C1); P = 13 800 × 25 = 350 kW (A1).",
+   why:"The component of weight along the slope is mg sin θ; you used m sin θ. Adding g gives 8600 N, total force 13 800 N, power 350 kW." },
  { q:"4(a)(i)", ch:7, page:"p07-12", marks:"0/1", kind:"red",
    question:"State the meaning of polarisation.",
    student:"(no creditworthy answer)",
-   answer:"Oscillations of a transverse wave are restricted to one plane that contains the direction of propagation.",
-   why:"Learn this definition word for word. It needs two parts: the oscillations, and a single plane (including the direction of travel). Only transverse waves can be polarised, which is the link to 4(a)(ii)." },
+   answer:"Oscillations are in a single plane that contains the direction of propagation.",
+   ms:"Oscillations in a single direction perpendicular to the direction of propagation, or in a single plane that contains the direction of propagation (B1).",
+   why:"Learn this definition word for word. The key idea: the oscillations are restricted to one direction or plane." },
+ { q:"4(c)(ii)", ch:8, page:"p07-13", marks:"marker 3/3 · MS 2/3", kind:"ms",
+   question:"A microwave of intensity I₀ and amplitude A₀ meets another of the same frequency and intensity ¼I₀ travelling in the opposite direction. Determine, in terms of A₀, the maximum amplitude of the wave formed.",
+   student:"I ∝ A², so the second wave has A = ½A₀ → answer 0.5 A₀",
+   answer:"1.5 A₀",
+   ms:"I ∝ A² (C1); A = 0.5A₀ (C1); maximum amplitude = A₀ + 0.5A₀ = 1.5A₀ (A1).",
+   why:"0.5A₀ is the amplitude of the second wave, not of the wave formed. At an antinode the two waves add: A₀ + 0.5A₀ = 1.5A₀. The marker ticked it, but the mark scheme would withhold the final mark." },
  { q:"5(c)(ii)", ch:9, page:"p07-15", marks:"mark lost", kind:"red",
    question:"Two identical lamps P and Q across a 12.0 V battery, slider at midpoint; current in each lamp = 1.55 A. Determine the total power dissipated in lamps P and Q.",
    student:"P = VI = 12.0 × 1.55 = 18.6 W",
    answer:"19 W",
-   why:"The method is correct (the lamps share 12 V, each 6.0 V with 1.55 A). The marker wanted the answer to 2 s.f., matching the data. Give final answers to the least number of s.f. in the data." },
+   ms:"P = VI (C1); = 6.0 × 1.55 × 2 = 19 W (A1).",
+   why:"Your method gives the right number; the expected final answer is 19 W, to 2 s.f. like the data." },
  { q:"5(d)", ch:10, page:"p07-16", marks:"1/2", kind:"worked",
    question:"The slider of the potentiometer in (c) is moved to end A. State and explain the effect on the brightness of lamps P and Q.",
    student:"Lamp P becomes dimmer (p.d. decreases, less power). Lamp Q becomes brighter (p.d. increases, more power).",
-   answer:"P goes out (does not light); Q becomes brighter.",
-   why:"With the slider at A, both ends of lamp P are connected to the same point, so P is short-circuited: zero p.d., zero current, no light. Q then has the full 12 V across it. “Dimmer” isn't enough when the p.d. falls to zero." },
+   answer:"P: p.d. falls to zero, so it goes out. Q: p.d. rises to 12 V, so it gets brighter.",
+   ms:"Lamp P: p.d. decreases to zero so goes ‘out’ (B1); lamp Q: p.d. increases to 12 V so gets brighter (B1).",
+   why:"With the slider at A both ends of P are at the same potential, so P is short-circuited. “Dimmer” isn't enough when the p.d. falls to zero." },
  { q:"6(a)", ch:11, page:"p07-17", marks:"1/1", kind:"note",
    question:"State what is meant by a fundamental particle.",
    student:"Particle that cannot be made up of other particles.",
-   answer:"Marked correct. The marker's preferred wording: a particle with no internal structure.",
-   why:"“Not made of other particles” and “no internal structure” both earn the mark. Electrons, neutrinos and quarks are fundamental; protons are not." }
+   answer:"Correct. The marker added the preferred wording “no internal structure”.",
+   ms:"Particle with no internal structure / which cannot be broken down into anything smaller (B1).",
+   why:"Both wordings are in the mark scheme." }
 ]},
-{ id:"on22-22", code:"9702/22", session:"Oct/Nov 2022", file:"November 2022 (v2)", items:[
+{ id:"on22-22", code:"9702/22", session:"Oct/Nov 2022", file:"November 2022 (v2)", msfile:"9702_w22_ms_22", items:[
  { q:"1(c)(ii)", ch:1, page:"p08-03", marks:"1/2", kind:"worked",
    question:"P = v³b with P = 84 kW ± 5% and b = 0.56 ± 7%; v = 53 m s⁻¹. Determine the absolute uncertainty in the value of v.",
    student:"%v = ⅓(5) + ⅓(7) = 4%;  53 × 0.04 = ±2.1 m s⁻¹",
    answer:"±2 m s⁻¹",
-   why:"v = (P/b)^⅓, so %v = ⅓(5 + 7) = 4%, as you had. 4% of 53 = 2.12. Absolute uncertainties are quoted to 1 significant figure, so ±2 m s⁻¹." },
+   ms:"Percentage uncertainty = (5 + 7)/3 = 4% (C1); absolute uncertainty = 0.04 × 53 = ±2 m s⁻¹ (A1).",
+   why:"Method correct. Absolute uncertainties are quoted to 1 significant figure." },
  { q:"5(a)", ch:8, page:"p08-10", marks:"0/1", kind:"red",
    question:"Two progressive sound waves meet to form a stationary wave. They have the same amplitude, wavelength, frequency and speed. State the other condition that must be fulfilled.",
    student:"Same frequency, same wavelength.",
-   answer:"The waves travel in opposite directions.",
-   why:"Read the stem: frequency and wavelength were already given, so repeating them can't score. A stationary wave forms when two identical waves travelling in opposite directions (often a wave and its reflection) superpose." },
+   answer:"They travel in opposite directions.",
+   ms:"(They travel in) opposite directions (B1).",
+   why:"Frequency and wavelength were already given in the stem. Repeating information from the question never scores." },
  { q:"5(b)(i)", ch:8, page:"p08-10", marks:"1/2", kind:"red",
    question:"Fig. 5.1 shows a stationary wave at t = 0 with each point at maximum displacement. Period = 0.016 s. Sketch the string at t = 0.004 s (label P) and at t = 0.024 s (label Q).",
    student:"Sketch lines drawn; only one position correct.",
-   answer:"P: straight line along AB.  Q: the t = 0 shape inverted.",
-   why:"Divide each time by the period. 0.004 s = ¼T: every point is passing through equilibrium, so the string is flat. 0.024 s = 1½T: after a whole period the string is back to the start, then half a period more flips it, so every loop is on the opposite side." }
+   answer:"P: straight line from A to B.  Q: mirror image of the given line.",
+   ms:"Straight line from A to B, labelled P (B1); line that is the mirror image of the given line, labelled Q (B1).",
+   why:"0.004 s = ¼T: every point is passing equilibrium, so flat. 0.024 s = 1½T: one whole cycle returns to the start, the extra half flips it." }
 ]},
-{ id:"on22-23", code:"9702/23", session:"Oct/Nov 2022", file:"November 2022 (v3)", items:[
+{ id:"on22-23", code:"9702/23", session:"Oct/Nov 2022", file:"November 2022 (v3)", msfile:"9702_w22_ms_23", items:[
  { q:"4(a)(iii)", ch:7, page:"p09-10", marks:"0/1", kind:"red",
    question:"A progressive longitudinal wave travels from left to right (Fig. 4.1). State the direction of motion of particle Z at time t₀ + T/4.",
    student:"Towards the …  (wrong direction)",
-   answer:"Towards the right.",
-   why:"Use your T/4 graph from (a)(ii): read the slope of the displacement at Z's position. Positive displacement means to the right in this question, and a displacement that is increasing means the particle is moving right." },
+   answer:"To the right.",
+   ms:"(To the) right / rightwards (A1).",
+   why:"Compare Z's displacement on the t₀ graph and your t₀ + T/4 graph. Positive displacement is to the right; if it is increasing, the particle is moving right." },
+ { q:"4(d)(i)", ch:8, page:"p09-11", marks:"marker 1/1 · MS 0/1", kind:"ms",
+   question:"The sound wave meets another sound wave travelling in the opposite direction. State a condition necessary for these two waves to form a stationary wave.",
+   student:"Waves are coherent.",
+   answer:"Same frequency (or wavelength, or period).",
+   ms:"Same frequency / wavelength / period (B1).",
+   why:"“Coherent” means a constant phase difference, which is not on the mark scheme. The condition examiners want is that the waves have the same frequency (and so the same wavelength)." },
  { q:"4(d)(ii)", ch:8, page:"p09-11", marks:"2/2", kind:"note",
    question:"State two ways in which a stationary wave differs from a progressive wave.",
    student:"Stationary wave does not transfer energy; particles have a phase difference of 0° or 180°.",
-   answer:"Marked correct. The marker added: points between adjacent nodes are in phase, and different points have different amplitudes.",
-   why:"Other accepted differences: a stationary wave has nodes and antinodes; amplitude varies along it (a progressive wave has the same amplitude everywhere)." },
+   answer:"Correct. The marker added two more accepted points.",
+   ms:"Any two: has nodes/antinodes; does not transfer energy; different points have different amplitudes; adjacent particles are in phase.",
+   why:"Your energy point is on the list; the marker added the amplitude and phase points as better alternatives." },
  { q:"5(d)", ch:10, page:"p09-14", marks:"0/3", kind:"red",
    question:"Three identical cells (e.m.f. 1.5 V, internal resistance 590 mΩ) in parallel across a conductor. One cell is removed. State and explain the effect on the potential difference across the conductor.",
    student:"Reasoning about total resistance and current in the wrong direction (corrected in red).",
    answer:"The p.d. across the conductor decreases.",
-   why:"Identical cells in parallel act like one 1.5 V cell whose internal resistance is the parallel combination. Removing a cell raises it from 0.197 Ω to 0.295 Ω. Total resistance rises, so current falls (0.68 A → 0.65 A), and the conductor's p.d. V = IR falls (1.37 V → 1.31 V). Equivalently, the lost volts Ir increase, so V = E − Ir decreases." },
+   ms:"Combined internal resistance greater (B1); more lost volts / current decreases (M1); so p.d. across conductor decreases (A1).",
+   why:"Removing a parallel cell raises the combined internal resistance (0.197 Ω → 0.295 Ω). Total resistance rises, current falls, lost volts Ir rise, and the conductor's p.d. V = E − Ir falls." },
+ { q:"6(b)(i)", ch:11, page:"p09-15", marks:"marker 1/1 · MS 0/1", kind:"ms",
+   question:"State the equation for β⁻ decay in terms of the fundamental particles involved.",
+   student:"d → u + e⁻   (udd → uud + e⁻)",
+   answer:"d → u + e⁻ + ν̄",
+   ms:"d → u + e⁻ + ν̄ or udd → uud + e⁻ + ν̄ (B1).",
+   why:"The antineutrino is part of β⁻ decay and must appear in the equation. The question even showed it in (a)." },
  { q:"6(c)(ii)", ch:11, page:"p09-15", marks:"0/1", kind:"red",
    question:"Suggest how the existence of neutrinos explains the continuous range of kinetic energies of β particles.",
    student:"Total energy is conserved. Energy must be absorbed by another particle released.",
-   answer:"The energy released is shared between the β particle and the (anti)neutrino in varying proportions.",
-   why:"Each decay releases the same total energy. If only the β particle carried it, every β particle would have the same KE. Because a neutrino shares the energy, and the split varies from decay to decay, β particles have a continuous range of KE." }
+   answer:"The neutrinos take varying amounts of the total energy released.",
+   ms:"The (emitted) neutrinos take varying amounts of the (same total) energy (B1).",
+   why:"Each decay releases the same energy. Because a neutrino shares it in a different proportion each time, the β particle's KE varies. The key word is “varying”." }
 ]},
-{ id:"mj23-21", code:"9702/21", session:"May/June 2023", file:"June 2023 (v1)", items:[
+{ id:"mj23-21", code:"9702/21", session:"May/June 2023", file:"June 2023 (v1)", msfile:"9702_s23_ms_21", items:[
  { q:"2(b)", ch:6, page:"p05-05", marks:"1/2", kind:"red",
    question:"A compressed spring exerts a total upward force of 8.2 N on the beam. It obeys Hooke's law and has elastic potential energy 0.32 J. Calculate the compression of the spring.",
    student:"0.32 = ½(1.6)x → x = 0.4 m  (used the beam's weight)",
    answer:"x = 0.078 m",
-   why:"E = ½Fx uses the force in the spring itself, which is the 8.2 N it exerts. x = 2E/F = 2 × 0.32 / 8.2 = 0.078 m. The beam's weight (1.6 N) is a different force." },
+   ms:"E = ½Fx (C1); 0.32 = ½ × 8.2 × x, x = 0.078 m (A1).",
+   why:"E = ½Fx needs the force in the spring itself (8.2 N), not the beam's weight." },
  { q:"2(c)(iii)", ch:2, page:"p05-07", marks:"1/1", kind:"note",
    question:"By reference to the force on the block, explain why the horizontal component of its velocity remains constant from A to B.",
    student:"No resultant force acting horizontally on the block.",
-   answer:"Marked correct. The marker added: the weight (the only force) is vertical.",
-   why:"Naming the only force and its direction makes the explanation complete: weight is vertical, so there is no horizontal force and no horizontal acceleration." },
+   answer:"Correct. The marker added “weight is vertical”.",
+   ms:"(Gravitational/resultant) force / weight is vertical (B1).",
+   why:"The mark scheme wording names the force: weight is vertical. That is the safest way to answer." },
  { q:"3(c)", ch:3, page:"p05-09", marks:"2/3", kind:"red",
    question:"Using Fig. 3.2 (momentum rises linearly to 6 kg m s⁻¹ at 4.0 s, then constant), sketch the variation of force X with time from t = 0 to 6.0 s. Friction = 2.0 N.",
    student:"Horizontal line at X = 3.5 N for the whole 0–6 s.",
-   answer:"X = 3.5 N from 0 to 4.0 s, then X = 2.0 N from 4.0 s to 6.0 s.",
-   why:"Resultant force = gradient of the p–t graph. 0–4 s: gradient 1.5 N, so X − 2.0 = 1.5 and X = 3.5 N. 4–6 s: gradient 0, so resultant is zero and X just balances friction, 2.0 N." },
+   answer:"X = 3.5 N for 0–4.0 s, then X = 2.0 N for 4.0–6.0 s.",
+   ms:"Horizontal line at X = 3.5 N from 0 to 4.0 s (B1, B1); horizontal line at X = 2.0 N from 4.0 to 6.0 s (B1).",
+   why:"Gradient of p–t = resultant force. After 4 s the gradient is zero, so X only needs to balance friction: 2.0 N." },
  { q:"5(b)(ii)", ch:8, page:"p05-15", marks:"1/3", kind:"red",
    question:"Light of wavelength 6.2 × 10⁻⁷ m, slit-to-screen distance 2.8 m. The distance across 8 bright fringes is 22 mm (Fig. 5.2). Calculate the slit separation a.",
    student:"x = 22/16 = 1.375 mm;  a = λD/x = 1.3 × 10⁻³ m",
    answer:"a = 6.3 × 10⁻⁴ m",
-   why:"x in λ = ax/D is the distance between adjacent bright fringes, not between a bright and a dark fringe. Across Fig. 5.2 the 22 mm covers 8 fringe spacings, so x = 2.75 mm. a = λD/x = 6.2 × 10⁻⁷ × 2.8 / 2.75 × 10⁻³ = 6.3 × 10⁻⁴ m." },
+   ms:"λ = ax/D (C1); x = 22/8 = 2.75 mm (C1); a = 6.2 × 10⁻⁷ × 2.8 / 2.75 × 10⁻³ = 6.3 × 10⁻⁴ m (A1).",
+   why:"x is the spacing between adjacent bright fringes. 8 bright fringes span 8 spacings in Fig. 5.2, so x = 22/8, not 22/16." },
  { q:"5(c)(ii)", ch:8, page:"p05-15", marks:"0/1", kind:"red",
    question:"P is the central bright fringe; R is the nearest bright fringe to P. State the phase difference between the light waves meeting at the centre of fringe R.",
    student:"0°",
    answer:"360°",
-   why:"At the first bright fringe beside the centre, the path difference is exactly one wavelength, so the phase difference is 360° (2π). 0° is the central fringe P." },
+   ms:"Phase difference = 360° (A1).",
+   why:"The first bright fringe beside the centre has a path difference of one wavelength, so a phase difference of 360°. 0° is the central fringe." },
  { q:"7(d)(ii)", ch:10, page:"p05-19", marks:"0/1", kind:"red",
    question:"The resistance of the thermistor increases. State whether there is a decrease, increase or no change to the current in the thermistor.",
    student:"No change.",
    answer:"Decrease.",
-   why:"The thermistor is in series with the 3400 Ω resistor in the branch in parallel with the voltmeter. A larger thermistor resistance means a larger total resistance, so with the same e.m.f. the current decreases." },
+   ms:"Decrease (B1).",
+   why:"The thermistor is in series in the circuit; more resistance means less current." },
  { q:"8(b)", ch:3, page:"p05-20", marks:"0/2", kind:"red",
    question:"Nucleus X (stationary, isolated) decays by α-emission to Y. Use conservation of momentum to explain why nucleus Y cannot be stationary immediately after the decay.",
    student:"Momentum must be conserved. Momentum of nucleus X increases, nucleus Y gains momentum; speed increases.",
-   answer:"Initial momentum is zero, so after the decay Y must have momentum equal and opposite to the α-particle's.",
-   why:"Start from the initial total momentum: X is stationary, so it is zero. The α-particle moves off with momentum, so to keep the total at zero Y must move in the opposite direction with equal-sized momentum. It cannot be stationary." }
+   answer:"Initial momentum is zero, so Y must have momentum equal and opposite to the α-particle's.",
+   ms:"Total momentum before decay is zero (B1); Y must have equal (and opposite) momentum to α-particle (B1).",
+   why:"Always start from the total momentum before. X is stationary, so it is zero. The α moves off, so Y must move the other way to keep the total at zero." }
 ]},
-{ id:"mj23-22", code:"9702/22", session:"May/June 2023", file:"June 2023 (v2)", items:[
+{ id:"mj23-22", code:"9702/22", session:"May/June 2023", file:"June 2023 (v2)", msfile:"9702_s23_ms_22", items:[
  { q:"2(c)(ii)", ch:5, page:"p06-05", marks:"1/3", kind:"worked",
    question:"At X the 2.4 N block has speed 3.4 m s⁻¹; its GPE decreases by 4.3 J from X to Y. Use conservation of energy to determine the kinetic energy of the block at Y.",
    student:"Solved for a speed instead: v = 6.8, written as the answer 6.8 J.",
    answer:"5.7 J",
-   why:"The question asks for kinetic energy, not speed. m = 2.4/9.81 = 0.245 kg. KE at X = ½ × 0.245 × 3.4² = 1.4 J. KE at Y = KE at X + GPE lost = 1.4 + 4.3 = 5.7 J." },
+   ms:"E = ½mv² (C1); ½ × (2.4/9.81) × 3.4² = 1.4 J at X (C1); KE at Y = 4.3 + 1.4 = 5.7 J (A1).",
+   why:"The question asks for kinetic energy, not speed. KE at Y = KE at X + GPE lost." },
  { q:"3(c)", ch:3, page:"p06-09", marks:"1/2", kind:"red",
    question:"The block is at rest at t = 0. Sketch the variation of the momentum of the block with time from t = 0 to 6.0 s (X = 1.4 N for 0–3 s, then 0.8 N = resistive force).",
    student:"Line rising from 0 to 3 s and continuing to rise (less steeply) to 6 s.",
-   answer:"Straight line from the origin up to 3.0 s, then horizontal from 3.0 s to 6.0 s.",
-   why:"Gradient of a p–t graph = resultant force. 0–3 s: resultant = 1.4 − 0.8 = 0.6 N (constant), so a straight line. After 3 s, X = 0.8 N equals the resistive force, so the resultant is zero and momentum stays constant." },
+   answer:"Straight line up from the origin to 3.0 s, then horizontal to 6.0 s.",
+   ms:"0–3.0 s: upward sloping straight line from origin (B1); 3.0–6.0 s: horizontal line, no step at 3.0 s (B1).",
+   why:"After 3 s, X equals the resistive force, so the resultant force is zero and the momentum stays constant." },
  { q:"5(c)(ii)", ch:7, page:"p06-13", marks:"1/2", kind:"red",
    question:"First filter's transmission axis is at 35° to the vertical; light leaving it is 5.7 W m⁻². The second filter transmits 5.2 W m⁻². Calculate angle α of the second filter's axis to the vertical (35° < α < 90°).",
    student:"5.2 = 5.7 cos²θ → θ = 17°;  α = 17°",
    answer:"α = 52°",
-   why:"In Malus's law θ is the angle between the light's polarisation plane and the filter axis. Light leaving filter 1 is polarised at 35°, so θ = α − 35° = 17° and α = 52°. The question also says α > 35°, which rules out 17°." }
+   ms:"5.2 = 5.7 cos²θ (θ = 17°) (C1); α = 35° + 17° = 52° (A1).",
+   why:"Malus's law gives the angle between the light's plane and the filter, which is the angle between the filters. Add the 35°." }
 ]},
-{ id:"on23-21", code:"9702/21", session:"Oct/Nov 2023", file:"November 2023 (v1)", items:[
+{ id:"on23-21", code:"9702/21", session:"Oct/Nov 2023", file:"November 2023 (v1)", msfile:"9702_w23_ms_21", items:[
  { q:"2(a)(iii)", ch:4, page:"p10-04", marks:"2/3", kind:"red",
    question:"Hot-air balloon: W = 3.39 × 10⁴ N, rope tension T = 4.00 × 10² N. The balloon is released from the rope. Calculate the initial acceleration of the balloon.",
    student:"Used the rounded volume 2840 m³ to find U → a = 0.107 m s⁻²",
    answer:"a = 0.12 m s⁻²",
-   why:"Before release U = W + T. After release the resultant is U − W = T = 400 N, so there is no need to go back through the volume. m = 3.39 × 10⁴ / 9.81 = 3456 kg; a = 400/3456 = 0.116 ≈ 0.12 m s⁻². Using the rounded volume made the small difference U − W inaccurate." },
+   ms:"m = W/g (C1); a = 4.00 × 10² / (3.39 × 10⁴ / 9.81) (C1); a = 0.12 m s⁻² (A1).",
+   why:"After release the resultant force is U − W, which equals the old tension (400 N). Going back through the rounded volume made the small difference inaccurate." },
  { q:"2(c)(iii)", ch:6, page:"p10-05", marks:"1/2", kind:"worked",
    question:"The rope is replaced by one of the same length and area but a material of lower Young modulus. Tension is unchanged. State and explain the effect on the elastic potential energy of the rope.",
    student:"Young modulus decreases, spring constant decreases; Eₚ = ½kx² so elastic potential energy decreases.",
-   answer:"The elastic potential energy increases.",
-   why:"With the same tension, area and length, stress is unchanged. Lower E means a larger strain, so a larger extension x. Use Eₚ = ½Fx with F fixed: x increases, so Eₚ increases. ½kx² hides the fact that x changes too." },
+   answer:"Longer extension, so the elastic potential energy is greater.",
+   ms:"Longer extension or smaller spring constant (M1); elastic potential energy is greater (A1).",
+   why:"Same tension, so use Eₚ = ½Fx: lower E means bigger x, so Eₚ increases. With ½kx² you forgot that x grows as k falls." },
  { q:"4(d)", ch:8, page:"p10-09", marks:"0/2", kind:"red",
    question:"The width of each slit is decreased by the same amount; slit separation unchanged. Describe and explain the effect, if any, on the appearance of the interference pattern.",
    student:"No changes. Width of slit does not affect the interference pattern.",
-   answer:"More diffraction at each slit, so the pattern spreads further and more fringes are seen.",
-   why:"Slit width controls how much each slit diffracts: narrower slit → more spreading. The two diffracted beams then overlap over a wider region, so more fringes appear. The spacing (λD/a) is unchanged because a is unchanged." },
+   answer:"More diffraction, so more fringes are seen (and they are dimmer).",
+   ms:"More diffraction / waves more spread / less intensity (B1); more fringes / dimmer bright fringes / no change to spacing (B1).",
+   why:"Slit width controls diffraction: narrower slit, wider spread, so the two beams overlap over more of the screen." },
+ { q:"5(a)", ch:7, page:"p10-11", marks:"marker 1/1 · MS 0/1", kind:"ms",
+   question:"A train at constant high speed approaches, passes (at t₁) and moves away from an observer. Sketch the frequency heard from t = 0 to t₂.",
+   student:"A smooth curve falling steadily from above fₛ, through fₛ at t₁, to below fₛ.",
+   answer:"A horizontal line above fₛ from 0 to t₁, then a horizontal line below fₛ from t₁ to t₂.",
+   ms:"Approximately horizontal line above the dashed line from t = 0 to t₁ and approximately horizontal line below it from t₁ to t₂ (A1).",
+   why:"The train's speed is constant, so the observed frequency is constant while it approaches, then constant (and lower) while it recedes. It only changes as the train passes. The marker gave the mark, but a gradual slope is not on the mark scheme." },
  { q:"7(a)", ch:11, page:"p10-14", marks:"1/2", kind:"red",
    question:"State the results of the α-particle scattering experiment that suggested most of the mass of the atom is concentrated in a very small region and most of the atom is empty space.",
    student:"α-particles hit the gold foil while getting deflected most of the time. A few times α-particles deflect back.",
-   answer:"Most α-particles passed straight through or were deflected by small angles; a very few were deflected through large angles (> 90°).",
-   why:"Each result matches one conclusion: mostly undeflected / small angles → mostly empty space; a few large-angle deflections → a tiny, dense, charged nucleus. Saying most are “deflected” is the opposite of the evidence for empty space." }
+   answer:"Most passed straight through / small deflections; a very few deflected through large angles (> 90°).",
+   ms:"A very small proportion deflected through large angles / > 90° (B1); a large proportion pass straight through / deflected by small angles (B1).",
+   why:"Most being deflected is the opposite of the evidence. Undeflected → empty space; rare large deflections → tiny, dense nucleus." }
 ]},
-{ id:"on23-22", code:"9702/22", session:"Oct/Nov 2023", file:"November 2023 (v2)", items:[
- { q:"2(b)(i)", ch:3, page:"p11-06", marks:"0/1", kind:"worked",
+{ id:"on23-22", code:"9702/22", session:"Oct/Nov 2023", file:"November 2023 (v2)", msfile:"9702_w23_ms_22", items:[
+ { q:"2(b)(i)", ch:3, page:"p11-06", marks:"marker 0/1 · MS 1/1", kind:"note",
    question:"The string breaks, releasing the sphere. State the magnitude of the acceleration of the sphere immediately after the string breaks.",
    student:"9.8",
-   answer:"9.81 m s⁻²",
-   why:"At the instant of release the sphere is stationary, so there is no drag and only weight acts (upthrust negligible): a = g. Quote g as given on the data sheet, 9.81 m s⁻². The marker gave 0 for 9.8; it may be that units were missing or g was expected to 3 s.f." },
+   answer:"Your answer was correct. The mark scheme answer is 9.8 m s⁻².",
+   ms:"Acceleration = 9.8 m s⁻² (A1).",
+   why:"The marker crossed this out, but it matches the mark scheme exactly: at release only weight acts, so a = g. It is worth asking the marker to check this mark." },
  { q:"3(d)", ch:5, page:"p11-09", marks:"1/2", kind:"red",
    question:"Frictionless rod. The initial compression x of the spring is varied to vary the maximum height gain Δh. Sketch the variation with x of Δh.",
    student:"Curve not matching the expected shape.",
-   answer:"A curve through the origin with increasing gradient (Δh ∝ x²).",
-   why:"All the elastic PE becomes GPE: ½kx² = mgΔh, so Δh = kx²/(2mg). That is a parabola starting at the origin and getting steeper." },
+   answer:"Curve from the origin with increasing gradient.",
+   ms:"Curved line from the origin (M1); with increasing gradient (A1).",
+   why:"½kx² = mgΔh, so Δh ∝ x²: a parabola from the origin getting steeper." },
  { q:"6(c)(iii)", ch:10, page:"p11-15", marks:"0/1", kind:"red",
    question:"The resistance of the LDR decreases (series circuit with 1400 Ω resistor, voltmeter across the LDR). State whether there is a decrease, increase or no change to the voltmeter reading.",
    student:"No change.",
    answer:"Decrease.",
-   why:"Potential divider: the e.m.f. is shared in proportion to resistance. The LDR's share is R_LDR/(R_LDR + 1400) × E, so a smaller R_LDR gets a smaller share of the voltage." }
+   ms:"Decrease (B1).",
+   why:"Potential divider: the LDR's share of the e.m.f. is R_LDR/(R_LDR + 1400). A smaller R_LDR gets a smaller share." }
 ]},
-{ id:"on23-23", code:"9702/23", session:"Oct/Nov 2023", file:"November 2023 (v3)", items:[
+{ id:"on23-23", code:"9702/23", session:"Oct/Nov 2023", file:"November 2023 (v3)", msfile:"9702_w23_ms_23", items:[
  { q:"4(a)(ii)", ch:6, page:"p12-10", marks:"1/2", kind:"red",
    question:"Explain why the area under the force–extension line represents the elastic potential energy of the wire.",
    student:"F = kx, E = ½kx² = ½Fx, which equals the area; area represents the work done to stretch the wire.",
-   answer:"Area = work done stretching the wire, and (within the elastic limit) this work done is stored as elastic potential energy.",
-   why:"Two links are needed: area under F–x = work done (force × extension); and that work is stored as EPE because the deformation is elastic. You gave the first but not the second." },
+   answer:"Area = work done to extend the wire; this work done equals the elastic potential energy.",
+   ms:"Area represents the work done (B1); work done is equal to elastic potential energy (B1).",
+   why:"Two links are needed: area = work done, and work done = stored EPE. You gave the first only." },
  { q:"4(b)(i)", ch:6, page:"p12-11", marks:"0/1", kind:"red",
    question:"A 2.0 N block hangs from wires G and H joined end-to-end. Use Fig. 4.1 to determine the extension x_G of wire G and x_H of wire H.",
    student:"x_G = 0.78 mm, x_H = 0.58 mm",
    answer:"x_G = 0.39 mm, x_H = 0.29 mm",
-   why:"In series, each wire carries the full 2.0 N tension. Read each line at F = 2.0 N. Your values are exactly double the graph readings; check the x-axis scale (each small square is 0.01 mm)." },
+   ms:"x_G = 0.39 mm and x_H = 0.29 mm (A1).",
+   why:"Each wire carries the full 2.0 N. Your readings were exactly double, so check the axis scale before reading values." },
  { q:"4(b)(ii)", ch:6, page:"p12-11", marks:"1/2", kind:"worked",
    question:"Calculate the total elastic potential energy Eₚ of the composite wire due to the weight of the block.",
    student:"Used 0.78 mm and 0.58 mm → 9.4 × 10⁻⁷ J",
    answer:"6.8 × 10⁻⁴ J",
-   why:"Eₚ = ½Fx for each wire: ½(2.0)(0.39 × 10⁻³) + ½(2.0)(0.29 × 10⁻³) = 6.8 × 10⁻⁴ J. As well as the wrong extensions carried forward, check the power of ten: mm → × 10⁻³ m." },
+   ms:"E = ½Fx (C1); ½ × 2.0 × 0.39 × 10⁻³ + ½ × 2.0 × 0.29 × 10⁻³ = 6.8 × 10⁻⁴ J (A1).",
+   why:"Besides the wrong extensions, the power of ten was off: mm → × 10⁻³ m." },
  { q:"7(a)", ch:9, page:"p12-16", marks:"0/2", kind:"red",
    question:"State Ohm's law.",
    student:"V = IR. Potential difference is directly proportional to resistance.",
-   answer:"The current in a conductor is proportional to the p.d. across it, provided the temperature (physical conditions) stays constant.",
-   why:"V = IR defines resistance and is true for every component, so it isn't Ohm's law. Ohm's law is the special case I ∝ V, which needs the condition of constant temperature for the second mark." },
+   answer:"Current is proportional to potential difference, provided temperature stays constant.",
+   ms:"Current proportional to potential difference (M1); provided temperature remains constant (A1).",
+   why:"V = IR defines resistance for any component; Ohm's law is the special case I ∝ V at constant temperature." },
  { q:"7(c)(ii)", ch:9, page:"p12-17", marks:"0/1", kind:"red",
    question:"The student's data give a charge q = 1.1 × 10⁻¹⁹ C for a charge carrier. With reference to q, explain why the data cannot be correct.",
    student:"Charge must be a multiple of 1.6 × 10⁻¹⁹ C.",
-   answer:"q is smaller than the elementary charge e, and no charge carrier has less than e.",
-   why:"Use the actual value: 1.1 × 10⁻¹⁹ C is less than 1.6 × 10⁻¹⁹ C, the smallest possible free charge. “Must be a multiple of e” is the right idea, but say why this value breaks it." }
+   answer:"q is below 1.6 × 10⁻¹⁹ C; a charge carrier cannot have less charge than this.",
+   ms:"Charge is below 1.6 × 10⁻¹⁹ C, or cannot be below 1.6 × 10⁻¹⁹ C, or should have a charge of 1.6 × 10⁻¹⁹ C (B1).",
+   why:"“With reference to q” means use the value: 1.1 × 10⁻¹⁹ is smaller than e." }
 ]},
-{ id:"on24-21", code:"9702/21", session:"Oct/Nov 2024", file:"November 2024 (v1)", items:[
+{ id:"on24-21", code:"9702/21", session:"Oct/Nov 2024", file:"November 2024 (v1)", msfile:"9702_w24_ms_21", items:[
  { q:"3(c)(iii)", ch:5, page:"p13-09", marks:"1/2", kind:"worked",
    question:"Input power 900 W; useful output power 600 W. Use your answer to (c)(ii) to determine the efficiency of the motor.",
    student:"600/900 × 100% … answer written as 70%",
-   answer:"67%",
-   why:"600/900 = 0.667 = 67%. Rounding to 70% (1 s.f.) is too coarse for data given to 2–3 s.f." },
+   answer:"0.67 (67%)",
+   ms:"Efficiency = useful output / total input (C1); = 600/900 = 0.67 (A1).",
+   why:"600/900 = 0.667. Rounding to 70% loses the accuracy the data supports." },
  { q:"6(a)(i)", ch:8, page:"p13-12", marks:"mark lost", kind:"red",
    question:"Coherent microwave sources X and Y emit with a phase difference of 90°. Explain why the position of greatest intensity is not at point O (equidistant from both sources).",
    student:"Waves emitted are 90° out of phase; at O constructive interference does not occur; the waves are not at their maximum displacement.",
-   answer:"At O the path difference is zero, so the waves arrive 90° out of phase; a maximum needs them to arrive in phase.",
-   why:"Link path difference to phase: equal paths add no extra phase, so the 90° source difference is still there at O. Constructive interference (maximum) needs a phase difference of 0° (or 360°)." }
+   answer:"For maximum intensity the waves must be in phase; at O they have a 90° phase difference.",
+   ms:"For maximum intensity, waves must be in phase (B1); waves are not in phase / have a 90° phase difference at O (B1).",
+   why:"State the condition for a maximum (in phase) and then show O fails it (equal paths keep the 90° difference)." }
 ]},
-{ id:"on24-22", code:"9702/22", session:"Oct/Nov 2024", file:"November 2024 (v2)", items:[
+{ id:"on24-22", code:"9702/22", session:"Oct/Nov 2024", file:"November 2024 (v2)", msfile:"9702_w24_ms_22", items:[
  { q:"2(c)", ch:2, page:"p14-05", marks:"1/2", kind:"red",
    question:"At A the child's speed is 0.60 m s⁻¹ with constant acceleration 0.85 m s⁻² along the slope. After 3.7 s she reaches B. Calculate the distance x from A to B.",
    student:"s = ut + ½gt² → 69 m  (used g instead of the given acceleration)",
    answer:"x = 8.0 m",
-   why:"Motion along a slope uses the acceleration along the slope, given as 0.85 m s⁻², not g. x = 0.60 × 3.7 + ½ × 0.85 × 3.7² = 2.2 + 5.8 = 8.0 m." },
+   ms:"x = ut + ½at² (C1); x = 0.60 × 3.7 + ½ × 0.85 × 3.7² = 8.0 m (A1).",
+   why:"On a slope, use the acceleration along the slope that the question gives, not g." },
  { q:"3(c)(iii)", ch:6, page:"p14-09", marks:"0/2", kind:"red",
    question:"More items double the stress in the wire (1.5 × 10⁷ Pa → 3.0 × 10⁷ Pa). Use Fig. 3.1 to state and explain whether the wire behaves plastically or elastically.",
    student:"Plastically. The limit of elasticity is exceeded; the wire cannot return to its original length.",
-   answer:"Elastically.",
-   why:"Marker: “Look at graph properly.” The stress axis is in units of 10⁷ Pa, so 3.0 × 10⁷ Pa is the value 3 on the axis, far below the elastic limit E (about 27 × 10⁷ Pa). The wire is still in the elastic region." }
+   answer:"Elastically: the new stress is below the stress at the elastic limit.",
+   ms:"Elastic limit is not reached / new stress is less than stress at elastic limit (M1); so behaves elastically (A1).",
+   why:"The axis is in units of 10⁷ Pa: 3.0 × 10⁷ Pa is “3” on it, far below E (≈ 27 × 10⁷ Pa). The marker's note: “Look at graph properly.”" }
 ]},
-{ id:"on24-23", code:"9702/23", session:"Oct/Nov 2024", file:"November 2024 (v3)", items:[
+{ id:"on24-23", code:"9702/23", session:"Oct/Nov 2024", file:"November 2024 (v3)", msfile:"9702_w24_ms_23", items:[
  { q:"4(b)(i)", ch:6, page:"p15-11", marks:"1/3", kind:"red",
    question:"Wires X and Y (length 0.84 m) support a beam with an 18 N load hung midway between them. Both extend by 0.47 mm. Young modulus of X = 1.9 × 10⁹ Pa. Determine the cross-sectional area of wire X.",
    student:"Used F = 18 N → A = 1.7 × 10⁻⁵ m²",
    answer:"A = 8.5 × 10⁻⁶ m²",
-   why:"The load hangs midway between two wires, so each wire carries half: 9.0 N. A = FL/(Ex) = 9.0 × 0.84 / (1.9 × 10⁹ × 0.47 × 10⁻³) = 8.5 × 10⁻⁶ m²." }
+   ms:"E = FL/Ax (C1); A = 9.0 × 0.84 / (1.9 × 10⁹ × 0.47 × 10⁻³) (C1); = 8.5 × 10⁻⁶ m² (A1).",
+   why:"The load is shared equally by two wires, so each carries 9.0 N." }
 ]},
-{ id:"mj26-21", code:"9702/21", session:"May/June 2026", file:"9702_s26_qp_21", partial:true, items:[
+{ id:"mj26-21", code:"9702/21", session:"May/June 2026", file:"9702_s26_qp_21", partial:true, msfile:null, items:[
  { q:"1(b)(iii)", ch:3, page:"p00-05", marks:"1/2", kind:"red",
    question:"The acceleration of the rocket (mass 2.83 × 10⁶ kg) at lift-off is 2.5 m s⁻². Determine a value for the thrust force T produced by the rocket engine.",
    student:"F = ma = 2.83 × 10⁶ × 2.5 = 7.1 × 10⁶ N",
    answer:"T = 3.5 × 10⁷ N",
-   why:"F = ma uses the resultant force. Two forces act: thrust T up, weight mg down (marker: W = mg, T − mg). T − mg = ma, so T = m(a + g) = 2.83 × 10⁶ × 12.31 = 3.5 × 10⁷ N." },
+   why:"F = ma uses the resultant force: T − mg = ma (the marker wrote W = mg, T − mg). T = m(a + g) = 2.83 × 10⁶ × 12.31 = 3.5 × 10⁷ N." },
  { q:"1(b)(iv)", ch:5, page:"p00-05", marks:"unmarked", kind:"unmarked",
    question:"Determine the kinetic energy of the rocket at time 60 s after lift-off (initial mass 2.83 × 10⁶ kg, fuel burnt at 2.0 × 10⁴ kg s⁻¹).",
    student:"Eₖ = ½(2.83 × 10⁶)(360)² = 1.8 × 10¹¹ J",
    answer:"≈ 1.1 × 10¹¹ J",
-   why:"The rocket has burnt fuel for 60 s, so its mass is now 2.83 × 10⁶ − 60 × 2.0 × 10⁴ = 1.63 × 10⁶ kg. Speed from the graph ≈ 360 m s⁻¹. Eₖ = ½ × 1.63 × 10⁶ × 360² = 1.1 × 10¹¹ J. Your speed reading was right; the mass was the initial one." },
+   why:"After 60 s, 1.2 × 10⁶ kg of fuel has burnt, so m = 1.63 × 10⁶ kg. Eₖ = ½ × 1.63 × 10⁶ × 360² = 1.1 × 10¹¹ J." },
  { q:"1(b)(v)", ch:2, page:"p00-05", marks:"unmarked", kind:"unmarked",
    question:"Use Figure 1.1 to estimate the height of the rocket above the launch pad at time 60 s after lift-off. Explain your reasoning.",
    student:"Eₖ = Eₚ: 1.8 × 10¹¹ = 2.83 × 10⁶ × 9.81 × h → h = 6.6 × 10⁵ m",
    answer:"≈ 8 × 10³ m (area under the graph)",
-   why:"Displacement = area under the speed–time graph. Counting squares or using strips 10 s wide (speeds ≈ 28, 67, 118, 180, 260, 360 m s⁻¹) gives about 8.2 × 10³ m. Energy conservation doesn't work here: the engine is doing work, so KE was never equal to the GPE." },
+   why:"Height = area under the speed–time graph. Strips 10 s wide (≈ 28, 67, 118, 180, 260, 360 m s⁻¹) give about 8.2 × 10³ m. KE = PE fails because the engine keeps doing work." },
  { q:"1(c)", ch:3, page:"p00-06", marks:"unmarked", kind:"unmarked",
    question:"The mass of the emitted exhaust gases is the same as the mass of fuel burnt. Use your answer in 1(b)(iii) to calculate the speed at which the exhaust gases are emitted.",
    student:"7.1 × 10⁶ / 2.0 × 10⁴ = 355 m s⁻¹",
-   answer:"≈ 1.7 × 10³ m s⁻¹",
-   why:"The method is correct: thrust = rate of change of momentum of the gas = (mass per second) × v, so v = T/(Δm/Δt). The error comes from the wrong thrust in 1(b)(iii); with T = 3.5 × 10⁷ N, v = 3.5 × 10⁷ / 2.0 × 10⁴ = 1.7 × 10³ m s⁻¹. This would likely earn error-carried-forward credit." },
+   answer:"≈ 1.7 × 10³ m s⁻¹ (with the correct thrust)",
+   why:"The method is right (thrust = mass per second × v). Only the thrust from 1(b)(iii) was wrong, so this would likely get error-carried-forward credit." },
  { q:"2(b)(v)", ch:5, page:"p00-09", marks:"unmarked", kind:"unmarked",
    question:"Use conservation of energy to determine the kinetic energy of the block (0.086 kg, k = 32 N m⁻¹, pulled 0.015 m below equilibrium) as it passes the equilibrium position moving upwards.",
    student:"Eₖ = 0.016 − 0.086(9.81)(0.015) = 3.2 × 10⁻³ J",
    answer:"≈ 3.4 × 10⁻³ J",
-   why:"The method is right: EPE lost = GPE gained + KE gained. 0.086 × 9.81 × 0.015 = 0.0127 J, and 0.016 − 0.0127 = 0.0033 J. With unrounded values (EPE released 0.0162 J) it is 3.5 × 10⁻³ J, the same as ½kA² = ½ × 32.4 × 0.015². Your subtraction gave 3.2 × 10⁻³, which is slightly off." },
+   why:"Method correct. 0.016 − 0.0127 = 0.0033 J; with unrounded values about 3.5 × 10⁻³ J. A subtraction slip." },
  { q:"3(b)(ii)", ch:7, page:"p00-10", marks:"unmarked", kind:"unmarked",
    question:"The wave travels from P to Q. At t = 0 point X is at equilibrium (Figure 3.1). Sketch the displacement of X against t from t = 0 to t = 0.48 s (amplitude 12 cm, period 0.24 s).",
    student:"Sine curve, amplitude 12 cm, period 0.24 s, starting at 0 and going up first.",
-   answer:"Same curve but starting at 0 and going down (negative) first.",
-   why:"Amplitude (12 cm) and period (two cycles in 0.48 s) are right. For direction, the wave moves right, so X will next have the displacement of the point just to its left. On Figure 3.1 that point is lower (towards the trough), so X moves downwards first." },
+   answer:"Same curve but going down (negative) first.",
+   why:"The wave moves right, so X next takes the displacement of the point to its left, which is lower. Amplitude and period were right." },
  { q:"3(c)(i)", ch:8, page:"p00-11", marks:"not marked", kind:"red",
    question:"Explain how a stationary wave is formed on the string.",
    student:"The reflected wave superposes with the original wave. There is a node at P and Q. A resultant wave is formed with the vector sum of displacement of both waves.",
-   answer:"The wave reflects at the end; the incident and reflected waves (same frequency and speed) travel in opposite directions and superpose.",
-   why:"The marker added “travel in opposite direction”. That is the key condition: two identical waves moving in opposite directions superpose to give nodes and antinodes." },
+   answer:"The incident and reflected waves travel in opposite directions and superpose.",
+   why:"The marker added “travel in opposite direction”, the key condition." },
  { q:"4(a)", ch:9, page:"p00-12", marks:"not marked", kind:"red",
    question:"Define resistance.",
    student:"R = V/I where V is potential difference and I is current.",
    answer:"The ratio of the potential difference across a component to the current in it.",
-   why:"Definitions should be in words. An equation with symbols defined is usually accepted, but the marker prefers the worded form." },
+   why:"Give definitions in words; the marker wrote the worded form." },
  { q:"4(b)(iv)", ch:9, page:"p00-13", marks:"not marked", kind:"red",
    question:"State one way in which the variation of resistance with temperature for a thermistor is different from that of a copper wire.",
    student:"Inversely proportional.",
-   answer:"A thermistor's resistance decreases as temperature increases; copper's increases.",
-   why:"Marker: “opposite trend?” The thermistor's resistance falls with temperature but not in inverse proportion. Describe the trend (and you could add that the thermistor's change is much larger and non-linear)." },
+   answer:"A thermistor's resistance decreases as temperature rises; copper's increases.",
+   why:"Marker: “opposite trend?” It is a decrease, not inverse proportionality." },
  { q:"4(c)(ii)", ch:9, page:"p00-13", marks:"unmarked", kind:"unmarked",
    question:"α = change in resistivity / (initial resistivity × change in temperature). Use Figure 4.1 to determine a value of α, in its SI unit, for copper at 0 °C.",
    student:"α = 1.6 × 10⁻⁸ / (1.7 × 10⁻⁸ × 20) = 0.047",
    answer:"≈ 4.3 × 10⁻³ K⁻¹",
-   why:"“Change in resistivity” is a change, not a value. Use the line's gradient: from 1.56 × 10⁻⁸ Ω m at 0 °C to 2.37 × 10⁻⁸ Ω m at 120 °C, Δρ/Δθ = 0.81 × 10⁻⁸ / 120 = 6.8 × 10⁻¹¹ Ω m K⁻¹. Divide by the initial resistivity at 0 °C: α = 6.8 × 10⁻¹¹ / 1.56 × 10⁻⁸ = 4.3 × 10⁻³ K⁻¹." }
+   why:"Use the gradient for “change in resistivity per change in temperature”: (2.37 − 1.56) × 10⁻⁸ / 120 = 6.8 × 10⁻¹¹ Ω m K⁻¹. Divide by ρ at 0 °C (1.56 × 10⁻⁸): α = 4.3 × 10⁻³ K⁻¹." }
 ]},
-{ id:"mj26-22", code:"9702/22", session:"May/June 2026", file:"9702_s26_qp_22", items:[
+{ id:"mj26-22", code:"9702/22", session:"May/June 2026", file:"9702_s26_qp_22", msfile:"9702_s26_ms_22", items:[
  { q:"1(b)(v)", ch:2, page:"p01-06", marks:"1/3", kind:"red",
    question:"At t = 0 the displacement of the car is zero. Sketch the variation of displacement with t from t = 0 to 80 s using the velocity–time graph (accelerates to 12 m s⁻¹ by 10 s, constant to 35 s, decelerates to 0 at 40 s, then velocity increasingly negative to 80 s).",
    student:"0–10 s curve ✓; straight line 10–35 s; sharp drop just after 35 s; straight line falling 40–80 s.",
-   answer:"35–40 s: curve levelling off to a maximum at 40 s. 40–80 s: curve going down, getting steeper.",
-   why:"Gradient of a displacement–time graph = velocity. 35–40 s: velocity falls to zero, so the curve flattens to zero gradient at 40 s; it can't drop while velocity is still positive. 40–80 s: velocity is negative and growing, so displacement decreases with increasing steepness." },
+   answer:"Maximum displacement at 40 s; gradient decreasing from 35–40 s and from 40–80 s; never crosses the t-axis.",
+   ms:"Increases then decreases without crossing the t-axis (B1); maximum at t = 40 s (B1); increasing gradient 0–10 s, constant 10–35 s, decreasing 35–40 s and 40–80 s (B1).",
+   why:"Gradient = velocity. Velocity stays positive until 40 s, so the peak is at 40 s, not 35 s. After 40 s velocity becomes more negative, so the curve bends downwards more steeply." },
  { q:"3(b)(ii)", ch:8, page:"p01-11", marks:"1/3", kind:"red",
    question:"Dippers A and B oscillate in phase at 3.0 Hz. AP = 3.9 m, BP = 2.4 m, and P lies on the first-order maximum line (Fig. 3.1). Determine the speed of the waves.",
    student:"1.5λ = 2.4 → λ = 1.6 m;  v = fλ = 3.0 × 1.6 = 4.8 m s⁻¹",
    answer:"v = 4.5 m s⁻¹",
-   why:"Use the path difference: 3.9 − 2.4 = 1.5 m. P is a first-order maximum, so path difference = 1λ, giving λ = 1.5 m. v = fλ = 3.0 × 1.5 = 4.5 m s⁻¹. Counting wavefronts on a not-to-scale diagram is unreliable." },
+   ms:"λ = 3.9 − 2.4 = 1.5 (C1); v = fλ = 3 × 1.5 (C1) = 4.5 m s⁻¹ (A1).",
+   why:"Path difference to a first-order maximum = 1λ. Don't count wavefronts on a not-to-scale diagram." },
  { q:"3(c)(ii)", ch:8, page:"p01-11", marks:"0/2", kind:"red",
    question:"The dipper frequency is increased to 4.0 Hz without changing amplitude; the ball stays at P. State and explain whether the amplitude of oscillation of the ball increases, decreases or remains the same.",
    student:"Remains the same. Amplitude of oscillation is not affected by the frequency.",
    answer:"Decreases.",
-   why:"The speed is unchanged, so λ = 4.5/4.0 = 1.125 m. The 1.5 m path difference is now 1.33λ, not a whole number of wavelengths, so the waves no longer arrive at P in phase. P is no longer a maximum and the ball's amplitude decreases." }
+   ms:"Path difference is not a whole number of wavelengths / waves at P not in phase (B1); amplitude decreases (B1).",
+   why:"New λ = 1.125 m; 1.5 m is now 1.33λ, so the waves no longer arrive at P in phase." },
+ { q:"4(b)(ii)", ch:5, page:"p01-13", marks:"marker 2/3 · MS 3/3", kind:"note",
+   question:"Determine the resistive force F acting on the train as it moves from point X to point Y.",
+   student:"Useful work 1.1 × 10⁵ × 52 − (13.0 − 7.4) × 10⁶ = 120 000 J; F = 120 000 / 216.5 = 550 N",
+   answer:"Your answer was correct: 550 N.",
+   ms:"Useful work = change in Eₚ + Fs (C1, C1); F = 1.2 × 10⁵ / (4.2 × 52) = 550 N (A1); allow 555 N but not 560 N.",
+   why:"The marker gave 2/3, but 550 N with this working earns full marks on the mark scheme. Worth asking about." }
 ]}
+];
+
+// Weak topics: concepts that several mistakes point to. refs are "paperId|question".
+window.THEMES = [
+ { title:"Resultant force: include every force before using F = ma",
+   text:"Several answers used one force where the question needed the resultant. F = ma and F = Δp/Δt always mean the resultant. Draw all the forces first (weight, drag, thrust, friction, tension), then add them with directions. A graph gradient (p–t) gives the resultant force too, not the applied force.",
+   refs:["mj26-21|1(b)(iii)","mj22-21|1(c)","on22-21|2(c)(ii)","mj23-21|3(c)","mj23-22|3(c)","on23-21|2(a)(iii)","on22-21|3(c)(ii)"] },
+ { title:"Reading graphs: gradient, area and axis scales",
+   text:"Gradient of displacement–time = velocity; area under velocity–time = displacement; gradient of momentum–time = resultant force. Check axis units such as “× 10⁷ Pa” or small-square sizes before reading values. Several marks were lost by reading the scale wrong or using one point instead of a gradient.",
+   refs:["mj26-21|1(b)(v)","mj26-22|1(b)(v)","on23-23|4(b)(i)","on24-22|3(c)(iii)","mj26-21|4(c)(ii)","on23-21|5(a)"] },
+ { title:"Energy accounting and efficiency",
+   text:"Write the energy balance before calculating: input = useful output + wasted, and KE at end = KE at start + work done or GPE lost. Efficiency = useful output ÷ input, never wasted ÷ input. A loss of GPE means moving down. Track mass changes (a rocket burns fuel) and give the quantity asked for (KE, not speed).",
+   refs:["mj22-23|4(c)(iii)","mj22-23|4(b)","mj22-22|2(c)","mj22-21|3(b)(iii)","mj23-22|2(c)(ii)","mj26-21|1(b)(iv)","on24-21|3(c)(iii)"] },
+ { title:"Elastic potential energy and Hooke's law",
+   text:"E = ½Fx uses the force in that spring or wire, and that force changes with extension (F = kx). If x doubles, F doubles and E quadruples. If several wires share a load, each wire takes a share. With the same force, a lower Young modulus means more extension and more stored energy.",
+   refs:["mj22-22|2(d)(ii)","mj23-21|2(b)","on23-21|2(c)(iii)","on23-23|4(a)(ii)","on23-23|4(b)(ii)","on24-23|4(b)(i)","on23-22|3(d)"] },
+ { title:"Interference: path difference, phase and fringe spacing",
+   text:"A maximum needs the waves to arrive in phase: path difference = nλ (phase 0°, 360°, …). A minimum needs (n + ½)λ. In λ = ax/D, x is the distance between adjacent bright fringes. Fringe spacing depends only on λ, a and D, so intensity and slit width don't change it, though slit width changes how many fringes appear.",
+   refs:["mj26-22|3(b)(ii)","mj26-22|3(c)(ii)","mj23-21|5(b)(ii)","mj23-21|5(c)(ii)","on24-21|6(a)(i)","on23-21|4(d)","mj22-22|5(d)","mj22-23|5(b)(iv)"] },
+ { title:"Stationary waves",
+   text:"Formed by two waves of the same frequency travelling in opposite directions (usually a wave and its reflection). Nodes stay still; antinode amplitude is the sum of the two amplitudes. Over one period every point passes through equilibrium at ¼T and is inverted at ½T. A particle travels 4A in one full oscillation.",
+   refs:["on22-22|5(a)","on22-22|5(b)(i)","mj22-21|5(d)","on22-21|4(c)(ii)","on22-23|4(d)(i)","mj26-21|3(c)(i)"] },
+ { title:"Progressive waves: particle motion, polarisation and Doppler",
+   text:"To find which way a particle moves, look at the particle just “upstream” (towards where the wave comes from): it will copy that displacement next. Malus's law angles are between the light's plane and the filter, so add the first filter's angle. A source moving at constant speed gives a constant (not gradually changing) Doppler frequency.",
+   refs:["on22-23|4(a)(iii)","mj26-21|3(b)(ii)","mj23-22|5(c)(ii)","on22-21|4(a)(i)","on23-21|5(a)"] },
+ { title:"Potential dividers and internal resistance",
+   text:"In a series chain each resistor gets a share of the e.m.f. in proportion to its resistance; change one resistance and every share changes. More internal resistance means more lost volts (Ir) and a lower terminal p.d. Parallel branches across a cell are independent: each gets the full p.d. A component with both ends joined is short-circuited.",
+   refs:["on22-23|5(d)","on23-22|6(c)(iii)","mj23-21|7(d)(ii)","mj22-23|6(c)","on22-21|5(d)"] },
+ { title:"Definitions and precise wording",
+   text:"Mark schemes award marks for exact phrases. Ohm's law is I ∝ V at constant temperature (not V = IR). Polarisation is oscillations in one plane. Thermistor resistance decreases as temperature rises. When a question says “with reference to” a value, quote the value.",
+   refs:["on23-23|7(a)","on22-21|4(a)(i)","mj26-21|4(a)","mj26-21|4(b)(iv)","on23-23|7(c)(ii)","on23-21|7(a)"] },
+ { title:"Particle physics: classes, decays and conservation",
+   text:"Hadrons = baryons (3 quarks) + mesons (quark + antiquark); leptons are separate and fundamental. β⁻ decay is d → u + e⁻ + ν̄, and the antineutrino must appear. The neutrino shares the decay energy in varying amounts, which explains the continuous β spectrum. Conservation of momentum answers start from the total momentum before.",
+   refs:["mj22-21|7(b)(ii)","on22-23|6(b)(i)","on22-23|6(c)(ii)","mj23-21|8(b)"] },
+ { title:"Significant figures and uncertainties",
+   text:"Give absolute uncertainties to 1 s.f., then round the value to the same decimal place. Final answers usually take the same number of s.f. as the data (2 or 3), so don't round 0.667 to 0.7 or quote 8.245.",
+   refs:["mj22-22|1(b)(ii)","on22-22|1(c)(ii)","on22-21|5(c)(ii)","on24-21|3(c)(iii)"] }
 ];
 
 </script>
 <script>
 (function(){
-  var P = window.PAPERS, CH = window.CHAPTERS, list = document.getElementById('list');
+  var P = window.PAPERS, CH = window.CHAPTERS, TH = window.THEMES, list = document.getElementById('list');
   var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-  var label = {red:'Red-pen fix', worked:'Marks lost', unmarked:'Not marked', note:'Marker note'};
-  var fixHead = {red:'Correct answer (red pen)', worked:'Correct answer', unmarked:'Correct answer', note:'Marker’s note'};
-  var all = [];
-  P.forEach(function(p){ p.items.forEach(function(it){ it.paper = p; all.push(it); }); });
-  var counts = {red:0, worked:0, unmarked:0, note:0};
+  var label = {red:'Red-pen fix', worked:'Marks lost', unmarked:'Not marked', ms:'Mark scheme differs', note:'No mistake'};
+  var fixHead = {red:'Correct answer (red pen)', worked:'Correct answer', unmarked:'Correct answer', ms:'Correct answer (mark scheme)', note:'Verdict'};
+  var all = [], byKey = {};
+  P.forEach(function(p){ p.items.forEach(function(it){ it.paper = p; it.key = p.id+'|'+it.q; it.dom = 'i-'+p.id+'-'+it.q.replace(/[^a-z0-9]/gi,''); all.push(it); byKey[it.key]=it; }); });
+  var counts = {red:0, worked:0, unmarked:0, ms:0, note:0};
   all.forEach(function(it){ counts[it.kind]++; });
   document.getElementById('stats').innerHTML =
     '<div class="stat"><b>'+P.length+'</b><span>papers</span></div>'+
@@ -534,37 +678,63 @@ window.PAPERS = [
     '<div class="stat red"><b>'+counts.red+'</b><span>red-pen corrections</span></div>'+
     '<div class="stat amber"><b>'+counts.worked+'</b><span>marks lost, no correction</span></div>'+
     '<div class="stat violet"><b>'+counts.unmarked+'</b><span>not marked, wrong</span></div>'+
-    '<div class="stat green"><b>'+counts.note+'</b><span>marker notes</span></div>';
+    '<div class="stat teal"><b>'+counts.ms+'</b><span>mark scheme differs</span></div>'+
+    '<div class="stat green"><b>'+counts.note+'</b><span>no mistake</span></div>';
 
   var state = {mode:'quick', group:'paper', filter:'all'};
-  try{ var s = JSON.parse(localStorage.getItem('rp-state')||'{}'); for (var k in s) if (k in state) state[k]=s[k]; }catch(e){}
+  try{ var s = JSON.parse(localStorage.getItem('rp-state2')||'{}'); for (var k in s) if (k in state) state[k]=s[k]; }catch(e){}
   var h = location.hash.replace('#','');
-  if (h==='quick'||h==='explained') state.mode = h;
+  if (h==='quick'||h==='explained'||h==='topics') state.mode = h;
 
   function short(p){ return p.session.replace('May/June','MJ').replace('Oct/Nov','ON')+' · '+p.code.slice(-2); }
   function pageNo(it){ return parseInt(it.page.split('-')[1],10); }
+  function msText(it){ return it.ms ? it.ms : null; }
 
   function card(it, showSrc){
     var p = it.paper, src = showSrc ? '<span class="src">'+esc(short(p))+'</span>' : '';
     var qcol = '<div class="qcol"><span class="qn">'+esc(it.q)+'</span>'+src+'<span class="marks">'+esc(it.marks)+'</span><span class="kind">'+label[it.kind]+'</span></div>';
+    var ms = msText(it);
     if (state.mode==='quick'){
-      return '<article class="item k-'+it.kind+'" data-kind="'+it.kind+'">'+qcol+
+      return '<article class="item k-'+it.kind+'" id="'+it.dom+'" data-kind="'+it.kind+'">'+qcol+
         '<p class="question">'+esc(it.question)+'</p>'+
-        '<div class="qa">'+esc(it.answer)+'<span class="yourline">'+esc(it.student)+'</span></div></article>';
+        '<div class="qa">'+esc(it.answer)+'<span class="yourline">'+esc(it.student)+'</span>'+(ms?'<span class="msq">'+esc(ms)+'</span>':'')+'</div></article>';
     }
-    return '<article class="item k-'+it.kind+'" data-kind="'+it.kind+'">'+qcol+
+    return '<article class="item k-'+it.kind+'" id="'+it.dom+'" data-kind="'+it.kind+'">'+qcol+
       '<div class="body"><p class="question">'+esc(it.question)+'</p>'+
       '<div class="ans"><div class="box yours"><h3>Your answer</h3><p>'+esc(it.student)+'</p></div>'+
       '<div class="box fix"><h3>'+fixHead[it.kind]+'</h3><p>'+esc(it.answer)+'</p></div></div>'+
+      (ms ? '<div class="msline"><b>Mark scheme '+esc(p.msfile)+'</b>'+esc(ms)+'</div>'
+          : '<div class="msline none"><b>Mark scheme</b>Not available for this paper; answer checked by working.</div>')+
       '<div class="why"><h3>Explanation</h3><p>'+esc(it.why)+'</p></div>'+
       '<details><summary>View marked page '+pageNo(it)+'</summary><img loading="lazy" alt="Scanned page '+pageNo(it)+' of '+esc(p.code)+' '+esc(p.session)+' with marking" data-src="pages/'+it.page+'.jpg"></details>'+
       '</div></article>';
   }
 
+  function renderTopics(){
+    var html = '<p class="lede" style="margin-top:24px">These are the ideas that come up again and again in your mistakes, most frequent first. Each has a short summary of the physics to revise and the questions that show it; tap a question to see it in full.</p>';
+    var ts = TH.slice().sort(function(a,b){return b.refs.length-a.refs.length});
+    ts.forEach(function(t){
+      var refs = t.refs.map(function(r){return byKey[r]}).filter(Boolean);
+      html += '<section class="theme"><span class="tcount">'+refs.length+' questions</span><h2>'+esc(t.title)+'</h2><p>'+esc(t.text)+'</p><div class="refs">';
+      refs.forEach(function(it){
+        html += '<button class="ref" data-go="'+it.dom+'"><b>'+esc(short(it.paper))+' · '+esc(it.q)+'</b><span>'+esc(it.answer)+'</span></button>';
+      });
+      html += '</div></section>';
+    });
+    return html;
+  }
+
   function render(){
+    document.getElementById('bar').hidden = state.mode==='topics';
+    document.querySelectorAll('.tab').forEach(function(t){t.setAttribute('aria-selected', String(t.dataset.mode===state.mode))});
+    document.querySelectorAll('[data-g]').forEach(function(b){b.setAttribute('aria-pressed', String(b.dataset.g===state.group))});
+    document.querySelectorAll('[data-f]').forEach(function(b){b.setAttribute('aria-pressed', String(b.dataset.f===state.filter))});
+    try{ localStorage.setItem('rp-state2', JSON.stringify(state)); }catch(e){}
+    list.className = state.mode;
+    if (state.mode==='topics'){ list.innerHTML = renderTopics(); return; }
     var groups = [];
     if (state.group==='paper'){
-      P.forEach(function(p){ groups.push({id:p.id, title:p.session, sub:p.code+' · '+p.file+(p.partial?' · partly marked':''), score:p.score, jump:short(p), items:p.items, src:false}); });
+      P.forEach(function(p){ groups.push({id:p.id, title:p.session, sub:p.code+' · '+p.file+(p.partial?' · partly marked':'')+(p.msfile?'':' · no mark scheme'), score:p.score, jump:short(p), items:p.items, src:false}); });
     } else {
       Object.keys(CH).forEach(function(n){
         var its = all.filter(function(it){return String(it.ch)===n});
@@ -583,19 +753,20 @@ window.PAPERS = [
       vis.forEach(function(it){ html += card(it, g.src); });
       html += '</section>';
     });
-    list.className = state.mode;
     list.innerHTML = html;
     document.getElementById('jumps').innerHTML = jumps;
-    document.querySelectorAll('.tab').forEach(function(t){t.setAttribute('aria-selected', String(t.dataset.mode===state.mode))});
-    document.querySelectorAll('[data-g]').forEach(function(b){b.setAttribute('aria-pressed', String(b.dataset.g===state.group))});
-    document.querySelectorAll('[data-f]').forEach(function(b){b.setAttribute('aria-pressed', String(b.dataset.f===state.filter))});
-    try{ localStorage.setItem('rp-state', JSON.stringify(state)); }catch(e){}
   }
 
   list.addEventListener('toggle', function(e){
     var d = e.target; if(d.tagName!=='DETAILS'||!d.open) return;
     var img = d.querySelector('img'); if(img && !img.src) img.src = img.dataset.src;
   }, true);
+  list.addEventListener('click', function(e){
+    var b = e.target.closest('[data-go]'); if(!b) return;
+    state.mode='explained'; state.filter='all'; render();
+    var el = document.getElementById(b.dataset.go);
+    if (el){ el.scrollIntoView({block:'start'}); var d=el.querySelector('details'); }
+  });
   document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){state.mode=t.dataset.mode; render();})});
   document.querySelectorAll('[data-g]').forEach(function(b){b.addEventListener('click',function(){state.group=b.dataset.g; render();})});
   document.querySelectorAll('[data-f]').forEach(function(b){b.addEventListener('click',function(){state.filter=b.dataset.f; render();})});
